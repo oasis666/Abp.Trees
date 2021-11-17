@@ -32,9 +32,9 @@ namespace EasyAbp.Abp.Trees.Samples
                 }
             });
 
-            await WithUnitOfWorkAsync(() =>
+            await WithUnitOfWorkAsync(async () =>
             {
-                var datas = _treeRepository.ToList();
+                var datas = await _treeRepository.GetListAsync();
 
                 datas.GroupBy(x => x.Code).Count().ShouldBe(2);
             });
@@ -56,9 +56,9 @@ namespace EasyAbp.Abp.Trees.Samples
 
             });
 
-            await WithUnitOfWorkAsync(() =>
+            await WithUnitOfWorkAsync(async () =>
             {
-                var datas = _treeRepository.ToList();
+                var datas = await _treeRepository.ToListAsync();
 
                 datas.GroupBy(x => x.Code).Count().ShouldBe(2);
             });
